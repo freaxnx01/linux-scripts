@@ -1,5 +1,5 @@
 #!/bin/bash
-# echo -e "$(uname -a)\n$(hostname)" | send-mm-message -w https://mattermost.freaxnx01.ch/hooks/ty7y8gpt338ainca3e1errfbme -f block -h "xyz status" -i :email::package:
+# echo -e "$(uname -a)\n$(hostname)" | send-mm-message -w https://mattermost.xyz.ch/hooks/xyz -f block -h "xyz status" -i :email::package:
 
 # arguments
 while getopts "w:f:h:i:" flag
