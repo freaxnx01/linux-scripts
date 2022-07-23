@@ -1,0 +1,38 @@
+#!/bin/bash
+# echo -e "$(uname -a)\n$(hostname)" | send-mm-message -w https://mattermost.freaxnx01.ch/hooks/ty7y8gpt338ainca3e1errfbme -f block -h "xyz status" -i :email::package:
+
+# arguments
+while getopts "w:f:h:i:" flag
+do
+    case "${flag}" in
+        w) webhook=${OPTARG};;
+        f) format=${OPTARG};;
+        h) heading=${OPTARG};;
+        i) icon=${OPTARG};;
+    esac
+done
+echo "Webhook: $webhook";
+echo "Format: $format";
+echo "Heading: $heading";
+echo "Icon: $icon";
+
+# STDIN
+STD_IN=$(</dev/stdin)
+
+# % -> %%, printf escape %
+STD_IN_CLEANUP=$(echo "$STD_IN" | sed -E "s/%/%%/" | sed -E 's/\#012/\n/g')
+
+if [ "$format" = "block" ]; then
+    PRE='```\n'
+    POST='\n```'
+fi
+
+if [ ! -z "$icon" ]; then
+    ICON="$icon\n"
+fi
+
+if [ ! -z "$heading" ]; then
+    HEADING="### $heading\n"
+fi
+
+printf "{\"text\": \"$ICON$HEADING$PRE$STD_IN_CLEANUP$POST\"}" | curl -i -X POST -H 'Content-Type: application/json' --data-binary @- $webhook
