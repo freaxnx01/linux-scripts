@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # echo -e "$(uname -a)\n$(hostname)" | send-mm-message -w https://mattermost.xyz.ch/hooks/xyz -f block -h "xyz status" -i :email::package:
 
 # arguments
