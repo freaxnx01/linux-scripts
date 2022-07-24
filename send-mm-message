@@ -20,7 +20,7 @@ echo "Icon: $icon";
 STD_IN=$(</dev/stdin)
 
 # % -> %%, printf escape %
-STD_IN_CLEANUP=$(echo "$STD_IN" | sed -E "s/%/%%/" | sed -E 's/\#012/\n/g')
+STD_IN_CLEANUP=$(echo "$STD_IN" | sed -E "s/%/%%/" | sed -E 's/\#012/\n/g' | sed -E "s/\"/'/g")
 
 if [ "$format" = "block" ]; then
     PRE='```\n'
