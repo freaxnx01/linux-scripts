@@ -1,4 +1,5 @@
 # Automatically add completion for all aliases to commands having completion functions
+# https://superuser.com/questions/436314/how-can-i-get-bash-to-perform-tab-completion-for-my-aliases
 function alias_completion {
     local namespace="alias_completion"
 
